@@ -16,7 +16,7 @@ async function bootstrap() {
     .setTitle('Desafio API Logística')
     .setDescription('Desafio técnico')
     .setVersion('1.0')
-    .addTag('logística  ')
+    .addTag('logística')
     .build();
 
   const documentFactory = () => SwaggerModule.createDocument(app, config);
