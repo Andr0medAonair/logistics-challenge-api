@@ -1,11 +1,11 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { txtToJsonConverter } from 'src/common/helpers/txtToJsonConverter.helper';
+import { stringToJsonConverter } from 'src/common/helpers/stringToJsonConverter.helper';
 
 @Injectable()
 export class OrdersService {
   create(rawPayload: string) {
     Logger.log('Creating a new order with data:', rawPayload);
-    const parsed = txtToJsonConverter(rawPayload);
+    const parsed = stringToJsonConverter(rawPayload);
     return parsed;
   }
 

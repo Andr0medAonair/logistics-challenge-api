@@ -1,14 +1,14 @@
 import { Logger } from '@nestjs/common';
 import { UserDataEntry } from 'src/models/orders/entities/user-data-entry.entity';
 
-export function txtToJsonConverter(rawPayload: string): UserDataEntry[] {
+export function stringToJsonConverter(rawPayload: string): UserDataEntry[] {
   const results: UserDataEntry[] = [];
   const lines = rawPayload.split('\n');
 
   for (const line of lines) {
     if (line.length < 95) {
       Logger.warn(
-        '[txtToJsonConverter] - A seguinte linha não será parseada pois está incompleta:',
+        '[stringToJsonConverter] - A seguinte linha não será parseada pois está incompleta:',
         line,
       );
       continue;
@@ -34,7 +34,7 @@ export function txtToJsonConverter(rawPayload: string): UserDataEntry[] {
       results.push(order);
     } catch (error) {
       Logger.error(
-        '[txtToJsonConverter] - Operação de parsing falhou:',
+        '[stringToJsonConverter] - Operação de parsing falhou:',
         line,
         error,
       );
