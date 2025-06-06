@@ -8,10 +8,4 @@ describe('formatDate', () => {
   ])('should format date value %s', ({ input, output }): void => {
     expect(formatDate(input)).toEqual(output);
   });
-
-  // test('should throw an error for invalid inputs', () => {
-  //   expect(() => formatDate('')).toThrow();
-  //   expect(() => formatDate('invalid')).toThrow();
-  //   // expect(() => formatDate('724.620210906')).toThrow();
-  // });
 });
