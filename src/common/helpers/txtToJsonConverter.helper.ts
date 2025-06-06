@@ -2,7 +2,6 @@ import { Logger } from '@nestjs/common';
 import { UserDataEntry } from 'src/models/orders/entities/user-data-entry.entity';
 
 export function txtToJsonConverter(rawPayload: string): UserDataEntry[] {
-  console.log(rawPayload);
   const results: UserDataEntry[] = [];
   const lines = rawPayload.split('\n');
 

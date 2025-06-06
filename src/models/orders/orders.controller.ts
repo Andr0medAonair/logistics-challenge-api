@@ -1,15 +1,29 @@
-import { Controller, Get, Post, Body, Param } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Param,
+  UseInterceptors,
+} from '@nestjs/common';
 import { OrdersService } from './orders.service';
-import { CreateOrderDto } from './dto/create-order.dto';
 import { UserData } from './entities/user-data.entity';
+import {
+  MemoryStorageFile,
+  UploadedFile,
+  FileInterceptor,
+} from '@blazity/nest-file-fastify';
 
 @Controller('orders')
 export class OrdersController {
   constructor(private readonly ordersService: OrdersService) {}
 
   @Post()
-  create(@Body() createOrderDto: CreateOrderDto) {
-    return this.ordersService.create(createOrderDto);
+  @UseInterceptors(FileInterceptor('file'))
+  async create(@UploadedFile() file: MemoryStorageFile) {
+    const buffer = file.buffer.toString('utf8');
+    // eslint-disable-next-line @typescript-eslint/await-thenable
+    return await this.ordersService.create(buffer);
   }
 
   @Get()

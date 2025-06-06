@@ -1,11 +1,12 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { CreateOrderDto } from './dto/create-order.dto';
+import { txtToJsonConverter } from 'src/common/helpers/txtToJsonConverter.helper';
 
 @Injectable()
 export class OrdersService {
-  create(createOrderDto: CreateOrderDto) {
-    Logger.log('Creating a new order with data:', createOrderDto);
-    return 'This action adds a new order';
+  create(rawPayload: string) {
+    Logger.log('Creating a new order with data:', rawPayload);
+    const parsed = txtToJsonConverter(rawPayload);
+    return parsed;
   }
 
   async findAll() {

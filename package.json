@@ -20,6 +20,8 @@
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "dependencies": {
+    "@blazity/nest-file-fastify": "^1.0.0",
+    "@fastify/multipart": "^9.0.3",
     "@fastify/static": "^8.2.0",
     "@nestjs/common": "^11.0.1",
     "@nestjs/core": "^11.0.1",
@@ -29,6 +31,7 @@
     "@nestjs/swagger": "^11.2.0",
     "date-fns": "^4.1.0",
     "dotenv": "^16.5.0",
+    "fastify-multer": "^2.0.3",
     "mongoose": "^8.15.1",
     "reflect-metadata": "^0.2.2",
     "rxjs": "^7.8.1"

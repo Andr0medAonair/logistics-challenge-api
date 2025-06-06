@@ -4,6 +4,7 @@ import {
   NestFastifyApplication,
   FastifyAdapter,
 } from '@nestjs/platform-fastify';
+import fastyfyMultipart from '@fastify/multipart';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 async function bootstrap() {
@@ -18,6 +19,8 @@ async function bootstrap() {
     .setVersion('1.0')
     .addTag('logística')
     .build();
+
+  await app.register(fastyfyMultipart);
 
   const documentFactory = () => SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, documentFactory);
