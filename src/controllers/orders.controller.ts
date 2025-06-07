@@ -6,8 +6,8 @@ import {
   Param,
   UseInterceptors,
 } from '@nestjs/common';
-import { OrdersService } from './orders.service';
-import { UserData } from './entities/user-data.entity';
+import { OrdersService } from '../services/orders.service';
+import { UserData } from '../entities/user-data.entity';
 import {
   MemoryStorageFile,
   UploadedFiles,
@@ -32,23 +32,20 @@ export class OrdersController {
       file2: MemoryStorageFile[];
     },
   ) {
-    console.log(files.file2);
-
     const bufferFile1 = files.file1[0].buffer.toString('utf8');
     const bufferFile2 = files.file2[0].buffer.toString('utf8');
     const composedString = bufferFile1 + bufferFile2;
 
-    // eslint-disable-next-line @typescript-eslint/await-thenable
     return await this.ordersService.create(composedString);
   }
 
   @Get()
-  async findAll(): Promise<UserData[]> {
-    return await this.ordersService.findAll();
+  async findAll(): Promise<UserData> {
+    return await this.ordersService.findAllOrders();
   }
 
   @Get(':id')
-  async findOne(@Param('id') id: number): Promise<any> {
-    return await this.ordersService.findOne(+id);
+  async findOne(@Param('id') id: number): Promise<UserData> {
+    return await this.ordersService.findOrdersByUserId(+id);
   }
 }
