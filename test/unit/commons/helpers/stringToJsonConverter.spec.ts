@@ -1,5 +1,8 @@
 import { stringToJsonConverter } from 'src/common/helpers/stringToJsonConverter.helper';
-import { parsedResponseMock, rawPayloadMock } from './mocks';
+import {
+  rawPayloadMock,
+  parsedResponseMock,
+} from './mocks/stringToJsonConverterMocks';
 
 describe('stringToJsonConverter', () => {
   test('should convert string to json correctly', () => {
