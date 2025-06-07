@@ -7,21 +7,25 @@ import {
   IsObject,
   ValidateNested,
 } from '@nestjs/class-validator';
-import { OrderDto } from './order.dto';
+import { ProductDto } from './product.dto';
 
-export class CreateOrderDto {
+export class OrderDto {
   @IsDefined()
   @IsNumber()
-  user_id: number;
+  order_id: number;
 
   @IsDefined()
   @IsString()
-  name: string;
+  total: string;
+
+  @IsDefined()
+  @IsString()
+  date: string;
 
   @IsDefined()
   @IsNotEmptyObject()
   @IsObject()
   @ValidateNested()
-  @Type(() => OrderDto)
-  orders: OrderDto[];
+  @Type(() => ProductDto)
+  products: ProductDto[];
 }
