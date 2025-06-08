@@ -7,6 +7,7 @@ import {
 import fastyfyMultipart from '@fastify/multipart';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import * as dotenv from 'dotenv';
+import { HttpExceptionFilter } from './filters/error-handling.filter';
 
 dotenv.config();
 
@@ -15,6 +16,8 @@ async function bootstrap() {
     AppModule,
     new FastifyAdapter({ logger: true }),
   );
+
+  app.useGlobalFilters(new HttpExceptionFilter());
 
   const config = new DocumentBuilder()
     .setTitle('Desafio API Logística')
