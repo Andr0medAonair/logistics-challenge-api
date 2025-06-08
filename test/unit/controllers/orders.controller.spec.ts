@@ -48,6 +48,16 @@ describe('OrdersController', () => {
     expect(result).toEqual(mockOrders);
   });
 
+  it('should return an array of orders with user data in find all with query method', async () => {
+    jest.spyOn(service, 'findAllOrders').mockResolvedValueOnce([mockOrder]);
+
+    const result = await controller.findAll({
+      startDate: '2020-12-01',
+      endDate: '2020-12-02',
+    });
+    expect(result).toEqual([mockOrder]);
+  });
+
   it('should return the exact order with user data in find by id method', async () => {
     jest.spyOn(service, 'findOrdersByUserId').mockResolvedValueOnce(mockOrder);
 

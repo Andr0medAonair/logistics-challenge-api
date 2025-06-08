@@ -1,9 +1,9 @@
 import { UserDataEntryInterface } from '../interfaces/user-data-entry.interface';
 import { UserDataInterface } from '../interfaces/user-data.interface';
 import { DateFormatter } from '../validators/types';
-import { finalizeOrder } from './finalizeOrderPayload.helper';
-import { groupEntriesByOrder } from './groupEntriesByOrder.helper';
-import { groupEntriesByUser } from './groupEntriesByUser.helper';
+import { finalizeOrder } from './finalize-order-payload.helper';
+import { groupEntriesByOrder } from './group-entries-by-order.helper';
+import { groupEntriesByUser } from './group-entries-by-user.helper';
 
 export function outputPayloadBuilder(
   payload: UserDataEntryInterface[],

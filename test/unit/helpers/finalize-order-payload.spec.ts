@@ -1,4 +1,4 @@
-import { finalizeOrder } from 'src/helpers/finalizeOrderPayload.helper';
+import { finalizeOrder } from 'src/helpers/finalize-order-payload.helper';
 import {
   firstProduct,
   fourthProduct,
@@ -6,7 +6,7 @@ import {
   outputPayloadMock,
   secondProduct,
   thirdProduct,
-} from './mocks/finalizeOrderPayloadMocks';
+} from './mocks/finalize-order-payload-mocks';
 
 describe('finalizeOrder', () => {
   it('should format and sort order payload correctly', () => {

@@ -24,13 +24,16 @@ export class OrdersRepository implements OrderRepositoryInterface {
     const filter: FilterQuery<OrderDocument> = {};
 
     if (startDate || endDate) {
-      filter.dataNumerica = {
+      filter.date = {
         ...(startDate && { $gte: startDate }),
         ...(endDate && { $lte: endDate }),
       };
     }
 
-    const payload = this.orderModel.find(filter).sort({ date: -1 }).exec();
+    const payload = await this.orderModel
+      .find(filter)
+      .sort({ date: -1 })
+      .exec();
 
     Logger.log(
       `${this.className} - ${this.findAllOrders.name}`,

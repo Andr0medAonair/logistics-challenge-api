@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+
 import {
   ValidatorConstraint,
   ValidatorConstraintInterface,
@@ -27,6 +27,6 @@ export class IsBeforeConstraint implements ValidatorConstraintInterface {
 
   defaultMessage(args: ValidationArguments) {
     const [relatedPropertyName] = args.constraints as string[];
-    return `${args.property} must be before ${relatedPropertyName}`;
+    return `${args.property} deve ser anterior à ${relatedPropertyName}`;
   }
 }

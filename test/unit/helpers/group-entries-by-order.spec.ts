@@ -1,6 +1,6 @@
-import { groupEntriesByOrder } from 'src/helpers/groupEntriesByOrder.helper';
-import { unparsedOrdersMock } from './mocks/outputPayloadBuilderMocks';
-import { groupedResponseMock } from './mocks/groupEntriesByOrderMocks';
+import { groupEntriesByOrder } from 'src/helpers/group-entries-by-order.helper';
+import { unparsedOrdersMock } from './mocks/output-payload-builder-mocks';
+import { groupedResponseMock } from './mocks/group-entries-by-order-mocks';
 
 describe('groupEntriesByOrder', () => {
   beforeEach(() => {

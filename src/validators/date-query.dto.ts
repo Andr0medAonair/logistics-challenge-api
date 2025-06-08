@@ -7,7 +7,7 @@ export class DateQueryDto {
     {},
     { message: 'A data de início deve estar no formato ISO 8601 (YYYY-MM-DD)' },
   )
-  @IsBefore('dataFim', {
+  @IsBefore('endDate', {
     message: 'A data de início deve ser anterior à data de fim.',
   })
   startDate?: string;
