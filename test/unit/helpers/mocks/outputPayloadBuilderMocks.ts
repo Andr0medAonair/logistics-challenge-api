@@ -1,4 +1,5 @@
 import { OrderInputInterface } from 'src/interfaces/order-input.interface';
+import { OrderInterface } from 'src/interfaces/order.interface';
 import { UserDataEntryInterface } from 'src/interfaces/user-data-entry.interface';
 import { UserDataInterface } from 'src/interfaces/user-data.interface';
 
@@ -166,67 +167,69 @@ export const groupedResponseOutputMock: Record<number, OrderInputInterface> = {
   },
 };
 
-export const userPayloadMock: UserDataInterface = {
-  user_id: 22,
-  name: 'Carter Armstrong',
-  orders: [
-    {
-      order_id: 204,
-      total: '3660.52',
-      date: '2021-08-16',
-      products: [
-        {
-          product_id: 2,
-          value: '469.32',
-        },
-        {
-          product_id: 3,
-          value: '1822.77',
-        },
-        {
-          product_id: 5,
-          value: '1368.43',
-        },
-      ],
-    },
-    {
-      order_id: 206,
-      total: '1649.65',
-      date: '2021-08-07',
-      products: [
-        {
-          product_id: 2,
-          value: '448.22',
-        },
-        {
-          product_id: 4,
-          value: '1201.43',
-        },
-      ],
-    },
-    {
-      order_id: 207,
-      total: '3159.71',
-      date: '2021-09-08',
-      products: [
-        {
-          product_id: 2,
-          value: '560.11',
-        },
-        {
-          product_id: 3,
-          value: '1471.32',
-        },
-        {
-          product_id: 6,
-          value: '1128.28',
-        },
-      ],
-    },
-  ],
-};
+export const userPayloadMock: UserDataInterface[] = [
+  {
+    user_id: 22,
+    name: 'Carter Armstrong',
+    orders: [
+      {
+        order_id: 204,
+        total: '3660.52',
+        date: '2021-08-16',
+        products: [
+          {
+            product_id: 2,
+            value: '469.32',
+          },
+          {
+            product_id: 3,
+            value: '1822.77',
+          },
+          {
+            product_id: 5,
+            value: '1368.43',
+          },
+        ],
+      },
+      {
+        order_id: 206,
+        total: '1649.65',
+        date: '2021-08-07',
+        products: [
+          {
+            product_id: 2,
+            value: '448.22',
+          },
+          {
+            product_id: 4,
+            value: '1201.43',
+          },
+        ],
+      },
+      {
+        order_id: 207,
+        total: '3159.71',
+        date: '2021-09-08',
+        products: [
+          {
+            product_id: 2,
+            value: '560.11',
+          },
+          {
+            product_id: 3,
+            value: '1471.32',
+          },
+          {
+            product_id: 6,
+            value: '1128.28',
+          },
+        ],
+      },
+    ],
+  },
+];
 
-export const singleOrderFinalizeOrderOutputPayloadMock = {
+export const singleOrderFinalizeOrderOutputPayloadMock: OrderInterface = {
   order_id: 12345,
   date: '2020-12-01',
   total: '512.48',
@@ -236,7 +239,9 @@ export const singleOrderFinalizeOrderOutputPayloadMock = {
   ],
 };
 
-export const emptyPayloadResponseMock = { user_id: 0, name: '', orders: [] };
+export const emptyPayloadResponseMock: UserDataInterface[] = [
+  { user_id: 0, name: '', orders: [] },
+];
 
 export const singleOrderMock: UserDataEntryInterface[] = [
   {
@@ -281,24 +286,26 @@ export const singleOrderFinalizeInputPayloadMock = [
   },
 ];
 
-export const singleOrderOutputMock: UserDataInterface = {
-  user_id: 2,
-  name: 'Medeiros',
-  orders: [
-    {
-      order_id: 12345,
-      total: '512.48',
-      date: '2020-12-01',
-      products: [
-        {
-          product_id: 111,
-          value: '256.24',
-        },
-        {
-          product_id: 112,
-          value: '256.24',
-        },
-      ],
-    },
-  ],
-};
+export const singleOrderOutputMock: UserDataInterface[] = [
+  {
+    user_id: 2,
+    name: 'Medeiros',
+    orders: [
+      {
+        order_id: 12345,
+        total: '512.48',
+        date: '2020-12-01',
+        products: [
+          {
+            product_id: 111,
+            value: '256.24',
+          },
+          {
+            product_id: 112,
+            value: '256.24',
+          },
+        ],
+      },
+    ],
+  },
+];

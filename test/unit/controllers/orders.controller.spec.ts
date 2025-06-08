@@ -1,7 +1,9 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { mockOrders, mockOrder, mockId } from '../mocks';
+import { mockOrders, mockOrder, mockId, createMockFiles } from '../mocks';
 import { OrdersController } from 'src/controllers/orders.controller';
 import { OrdersService } from 'src/services/orders.service';
+import { OrdersRepository } from 'src/repositories/orders.repository';
+import { ConfigService } from '@nestjs/config';
 
 describe('OrdersController', () => {
   let controller: OrdersController;
@@ -10,7 +12,25 @@ describe('OrdersController', () => {
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [OrdersController],
-      providers: [OrdersService],
+      providers: [
+        OrdersService,
+        {
+          provide: OrdersRepository,
+          useValue: {},
+        },
+        {
+          provide: ConfigService,
+          useValue: {},
+        },
+        {
+          provide: 'DATABASE_CONNECTION',
+          useValue: {},
+        },
+        {
+          provide: 'ORDER_MODEL',
+          useValue: {},
+        },
+      ],
     }).compile();
 
     controller = module.get<OrdersController>(OrdersController);
@@ -35,10 +55,10 @@ describe('OrdersController', () => {
     expect(result).toEqual(mockOrder);
   });
 
-    it('should return the correct payload with the create order method', async () => {
-    jest.spyOn(service, 'createOrders').mockResolvedValueOnce(mockOrder);
+  it('should return the correct payload with the create order method', async () => {
+    jest.spyOn(service, 'createOrders').mockResolvedValueOnce(mockOrders);
 
-    const result = await controller.create(mockId);
-    expect(result).toEqual(mockOrder);
+    const result = await controller.create(createMockFiles);
+    expect(result).toEqual(mockOrders);
   });
 });

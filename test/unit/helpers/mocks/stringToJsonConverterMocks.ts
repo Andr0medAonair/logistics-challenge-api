@@ -1,4 +1,4 @@
-import { UserDataEntry } from 'src/interfaces/user-data-entry.interface';
+import { UserDataEntryInterface } from 'src/interfaces/user-data-entry.interface';
 
 export const rawPayloadMock: string = `
 0000000077                         Mrs. Stephen Trantow00000008450000000003     1672.8920210627
@@ -8,7 +8,7 @@ export const rawPayloadMock: string = `
 0000000064                             Quintin Turcotte00000006910000000002      1583.320211109
 `;
 
-export const parsedResponseMock: UserDataEntry[] = [
+export const parsedResponseMock: UserDataEntryInterface[] = [
   {
     userId: 77,
     userName: 'Mrs. Stephen Trantow',

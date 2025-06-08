@@ -3,25 +3,29 @@ import { UserDataInterface } from '../interfaces/user-data.interface';
 import { DateFormatter } from '../validators/types';
 import { finalizeOrder } from './finalizeOrderPayload.helper';
 import { groupEntriesByOrder } from './groupEntriesByOrder.helper';
+import { groupEntriesByUser } from './groupEntriesByUser.helper';
 
 export function outputPayloadBuilder(
   payload: UserDataEntryInterface[],
   dateFormatter: DateFormatter,
-): UserDataInterface {
+): UserDataInterface[] {
   if (!payload || payload.length === 0) {
-    return { user_id: 0, name: '', orders: [] };
+    return [{ user_id: 0, name: '', orders: [] }];
   }
 
-  const user_id = payload[0].userId;
-  const name = payload[0].userName;
+  const groupedEntriesByUser = groupEntriesByUser(payload);
 
-  const groupedOrders = groupEntriesByOrder(payload, dateFormatter);
+  const finalResult = Object.values(groupedEntriesByUser).map(
+    (entriesForUser) => {
+      const groupedOrders = groupEntriesByOrder(entriesForUser, dateFormatter);
+      const finalOrders = Object.values(groupedOrders).map(finalizeOrder);
 
-  const finalOrders = Object.values(groupedOrders).map(finalizeOrder);
-
-  return {
-    user_id,
-    name,
-    orders: finalOrders,
-  };
+      return {
+        user_id: entriesForUser[0].userId,
+        name: entriesForUser[0].userName,
+        orders: finalOrders,
+      };
+    },
+  );
+  return finalResult;
 }

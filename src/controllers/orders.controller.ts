@@ -1,11 +1,4 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Param,
-  UseInterceptors,
-} from '@nestjs/common';
+import { Controller, Get, Post, Param, UseInterceptors } from '@nestjs/common';
 import { OrdersService } from '../services/orders.service';
 import { UserData } from '../entities/user-data.entity';
 import {
@@ -36,11 +29,11 @@ export class OrdersController {
     const bufferFile2 = files.file2[0].buffer.toString('utf8');
     const composedString = bufferFile1 + bufferFile2;
 
-    return await this.ordersService.create(composedString);
+    return await this.ordersService.createOrders(composedString);
   }
 
   @Get()
-  async findAll(): Promise<UserData> {
+  async findAll(): Promise<UserData[]> {
     return await this.ordersService.findAllOrders();
   }
 

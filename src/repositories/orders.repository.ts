@@ -6,8 +6,8 @@ import { OrderRepositoryInterface } from 'src/interfaces/orders-repository.inter
 import { UserDataEntryInterface } from 'src/interfaces/user-data-entry.interface';
 
 @Injectable()
-export class OrderRepository implements OrderRepositoryInterface {
-  private className = 'OrderRepository';
+export class OrdersRepository implements OrderRepositoryInterface {
+  private className = 'OrdersRepository';
 
   constructor(
     @Inject('ORDER_MODEL')

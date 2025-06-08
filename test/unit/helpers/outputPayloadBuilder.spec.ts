@@ -15,8 +15,8 @@ import { groupEntriesByOrder } from 'src/helpers/groupEntriesByOrder.helper';
 import { DateFormatter } from 'src/validators/types';
 import { finalizeOrder } from 'src/helpers/finalizeOrderPayload.helper';
 
-jest.mock('src/common/helpers/groupEntriesByOrder.helper');
-jest.mock('src/common/helpers/finalizeOrderPayload.helper');
+jest.mock('src/helpers/groupEntriesByOrder.helper');
+jest.mock('src/helpers/finalizeOrderPayload.helper');
 
 describe('outputPayloadBuilder', () => {
   beforeEach(() => {
@@ -47,9 +47,9 @@ describe('outputPayloadBuilder', () => {
       singleOrderFinalizeInputPayloadMock,
     );
     expect(result).toEqual(singleOrderOutputMock);
-    expect(result.orders).toHaveLength(1);
-    expect(result.user_id).toBe(2);
-    expect(result.name).toBe('Medeiros');
+    expect(result).toHaveLength(1);
+    expect(result[0].user_id).toBe(2);
+    expect(result[0].name).toBe('Medeiros');
   });
 
   test('should build output payload correctly for a larger file', () => {
