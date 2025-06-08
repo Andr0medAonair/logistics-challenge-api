@@ -36,12 +36,12 @@ export class OrdersRepository implements OrderRepositoryInterface {
     return payload;
   }
 
-  async createOrder(
+  async createOrders(
     order: CreateOrderDto[],
   ): Promise<UserDataEntryInterface[]> {
     Logger.log(
       `order = ${JSON.stringify(order)}`,
-      `${this.className} - ${this.createOrder.name}`,
+      `${this.className} - ${this.createOrders.name}`,
     );
 
     const createdOrder = await this.orderModel.insertMany(order, {

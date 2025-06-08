@@ -7,7 +7,7 @@ describe('groupEntriesByOrder', () => {
     jest.clearAllMocks();
   });
 
-  test('should sort items by the correct order', () => {
+  it('should sort items by the correct order', () => {
     const mockDateFormatter = jest.fn(
       (input: string) =>
         `${input.substring(0, 4)}-${input.substring(4, 6)}-${input.substring(6, 8)}`,

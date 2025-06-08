@@ -9,7 +9,7 @@ import {
 } from './mocks/finalizeOrderPayloadMocks';
 
 describe('finalizeOrder', () => {
-  test('should format and sort order payload correctly', () => {
+  it('should format and sort order payload correctly', () => {
     const response = finalizeOrder(inputPayloadMock);
 
     expect(response).toEqual(outputPayloadMock);

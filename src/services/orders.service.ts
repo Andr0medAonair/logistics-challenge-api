@@ -18,7 +18,7 @@ export class OrdersService {
       `Creating a new order with data: ${rawPayload}`,
     );
     const parsed: CreateOrderDto[] = stringToJsonConverter(rawPayload);
-    const payload = await this.ordersRepository.createOrder(parsed);
+    const payload = await this.ordersRepository.createOrders(parsed);
     return outputPayloadBuilder(payload, formatDate);
   }
 

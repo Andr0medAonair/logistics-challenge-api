@@ -5,7 +5,7 @@ import {
 } from './mocks/stringToJsonConverterMocks';
 
 describe('stringToJsonConverter', () => {
-  test('should convert string to json correctly', () => {
+  it('should convert string to json correctly', () => {
     const response = stringToJsonConverter(rawPayloadMock);
     expect(response).toEqual(parsedResponseMock);
   });

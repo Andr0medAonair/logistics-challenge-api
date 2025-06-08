@@ -1,6 +1,7 @@
 import { MemoryStorageFile } from '@blazity/nest-file-fastify';
 import { UserDataEntryInterface } from 'src/interfaces/user-data-entry.interface';
 import { UserDataInterface } from 'src/interfaces/user-data.interface';
+import { CreateOrderDto } from 'src/validators/create-order.dto';
 
 export const createMockPayload: string = `[
   "0000000001Zarelli                              0000000123 0000000111 512.24    20211201",
@@ -29,6 +30,41 @@ export const createMockFiles = {
 };
 
 export const databaseMockOutput: UserDataEntryInterface[] = [
+  {
+    userId: 1,
+    userName: 'Zarelli',
+    orderId: 123,
+    prodId: 111,
+    value: 512.24,
+    date: 20211201,
+  },
+  {
+    userId: 1,
+    userName: 'Zarelli',
+    orderId: 123,
+    prodId: 122,
+    value: 512.24,
+    date: 20211201,
+  },
+  {
+    userId: 2,
+    userName: 'Medeiros',
+    orderId: 12345,
+    prodId: 111,
+    value: 256.24,
+    date: 20201201,
+  },
+  {
+    userId: 2,
+    userName: 'Medeiros',
+    orderId: 12345,
+    prodId: 122,
+    value: 256.24,
+    date: 20201201,
+  },
+];
+
+export const createDatabaseMockInput: CreateOrderDto[] = [
   {
     userId: 1,
     userName: 'Zarelli',

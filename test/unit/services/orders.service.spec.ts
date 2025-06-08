@@ -5,6 +5,7 @@ import {
   mockOrder,
   databaseMockOutput,
   databaseMockSingleOutput,
+  createMockPayload,
 } from '../mocks';
 import { OrdersService } from 'src/services/orders.service';
 import { OrdersRepository } from 'src/repositories/orders.repository';
@@ -58,5 +59,14 @@ describe('OrdersService', () => {
 
     const response = await service.findOrdersByUserId(mockId);
     expect(response).toStrictEqual(mockOrder);
+  });
+
+  it('should return correct value on create orders method', async () => {
+    jest
+      .spyOn(repository, 'createOrders')
+      .mockResolvedValueOnce(databaseMockOutput);
+
+    const response = await service.createOrders(createMockPayload);
+    expect(response).toStrictEqual(mockOrders);
   });
 });

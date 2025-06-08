@@ -23,7 +23,7 @@ describe('outputPayloadBuilder', () => {
     jest.clearAllMocks();
   });
 
-  test('should build output payload correctly', () => {
+  it('should build output payload correctly', () => {
     const mockDateFormatter: DateFormatter = jest.fn();
     (groupEntriesByOrder as jest.Mock).mockReturnValueOnce(
       singleOrderGroupedMock,
@@ -52,7 +52,7 @@ describe('outputPayloadBuilder', () => {
     expect(result[0].name).toBe('Medeiros');
   });
 
-  test('should build output payload correctly for a larger file', () => {
+  it('should build output payload correctly for a larger file', () => {
     const mockDateFormatter = jest.fn(
       (input: string) =>
         `${input.substring(0, 4)}-${input.substring(4, 6)}-${input.substring(6, 8)}`,
@@ -69,7 +69,7 @@ describe('outputPayloadBuilder', () => {
     expect(result).toEqual(userPayloadMock);
   });
 
-  test('should return correct response with empty array payload', () => {
+  it('should return correct response with empty array payload', () => {
     const mockDateFormatter = jest.fn();
 
     const result = outputPayloadBuilder([], mockDateFormatter);
