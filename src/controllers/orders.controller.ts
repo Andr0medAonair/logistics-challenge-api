@@ -13,7 +13,7 @@ import {
   UploadedFiles,
   FileFieldsInterceptor,
 } from '@blazity/nest-file-fastify';
-import { DateQueryDto } from 'src/validators/date-query.dto';
+import { DateQueryDto } from 'src/dtos/date-query.dto';
 
 @Controller('orders')
 export class OrdersController {

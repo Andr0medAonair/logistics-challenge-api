@@ -3,9 +3,9 @@ import { stringToJsonConverter } from 'src/helpers/string-to-json-converter.help
 import { outputPayloadBuilder } from 'src/helpers/output-payload-builder.helper';
 import { formatDate } from 'src/utils/format-date.utils';
 import { OrdersRepository } from '../repositories/orders.repository';
-import { CreateOrderDto } from 'src/validators/create-order.dto';
+import { CreateOrderDto } from 'src/dtos/create-order.dto';
 import { UserDataInterface } from 'src/interfaces/user-data.interface';
-import { DateQueryDto } from 'src/validators/date-query.dto';
+import { DateQueryDto } from 'src/dtos/date-query.dto';
 import { transformDateStringToNumeric } from 'src/utils/transform-date-string-to-numeric.utils';
 
 @Injectable()

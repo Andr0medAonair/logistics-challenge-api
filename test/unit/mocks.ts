@@ -1,7 +1,7 @@
 import { MemoryStorageFile } from '@blazity/nest-file-fastify';
 import { UserDataEntryInterface } from 'src/interfaces/user-data-entry.interface';
 import { UserDataInterface } from 'src/interfaces/user-data.interface';
-import { CreateOrderDto } from 'src/validators/create-order.dto';
+import { CreateOrderDto } from 'src/dtos/create-order.dto';
 
 export const createMockPayload: string = `[
   "0000000001Zarelli                              0000000123 0000000111 512.24    20211201",

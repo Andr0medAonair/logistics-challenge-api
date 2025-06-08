@@ -1,6 +1,6 @@
 import { OrderInputInterface } from '../interfaces/order-input.interface';
 import { UserDataEntryInterface } from '../interfaces/user-data-entry.interface';
-import { DateFormatter } from '../validators/types';
+import { DateFormatter } from '../dtos/types';
 
 export function groupEntriesByOrder(
   payload: UserDataEntryInterface[],

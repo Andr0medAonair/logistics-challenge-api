@@ -1,5 +1,5 @@
 import { IsOptional, IsDateString } from '@nestjs/class-validator';
-import { IsBefore } from './is-before.validator';
+import { IsBefore } from '../validators/is-before.validator';
 
 export class DateQueryDto {
   @IsOptional()

@@ -2,7 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { Logger } from '@nestjs/common';
 import { Model, FilterQuery } from 'mongoose';
 import { OrderDocument } from 'src/schemas/order.schema';
-import { NumericDateQueryDto } from 'src/validators/numeric-date-query.dto';
+import { NumericDateQueryDto } from 'src/dtos/numeric-date-query.dto';
 import { OrdersRepository } from 'src/repositories/orders.repository';
 import { createDatabaseMockInput, databaseMockOutput } from '../mocks';
 

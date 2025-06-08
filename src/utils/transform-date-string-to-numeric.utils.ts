@@ -1,5 +1,5 @@
-import { DateQueryDto } from 'src/validators/date-query.dto';
-import { NumericDateQueryDto } from 'src/validators/numeric-date-query.dto';
+import { DateQueryDto } from 'src/dtos/date-query.dto';
+import { NumericDateQueryDto } from 'src/dtos/numeric-date-query.dto';
 import { convertDateStringToNumericDate } from './convert-string-date-to-numeric-date.utils';
 
 export function transformDateStringToNumeric(

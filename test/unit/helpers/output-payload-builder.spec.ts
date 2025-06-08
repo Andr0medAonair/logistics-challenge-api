@@ -12,7 +12,7 @@ import {
 } from './mocks/output-payload-builder-mocks';
 import { groupedResponseMock } from './mocks/group-entries-by-order-mocks';
 import { groupEntriesByOrder } from 'src/helpers/group-entries-by-order.helper';
-import { DateFormatter } from 'src/validators/types';
+import { DateFormatter } from 'src/dtos/types';
 import { finalizeOrder } from 'src/helpers/finalize-order-payload.helper';
 
 jest.mock('src/helpers/group-entries-by-order.helper');

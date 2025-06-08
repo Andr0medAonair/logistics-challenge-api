@@ -1,11 +1,11 @@
 import { Injectable, Inject, Logger } from '@nestjs/common';
 import { FilterQuery, Model } from 'mongoose';
-import { CreateOrderDto } from '../validators/create-order.dto';
+import { CreateOrderDto } from '../dtos/create-order.dto';
 import { UserDataEntry } from '../entities/user-data-entry.entity';
 import { OrderRepositoryInterface } from 'src/interfaces/orders-repository.interface';
 import { UserDataEntryInterface } from 'src/interfaces/user-data-entry.interface';
 import { OrderDocument } from 'src/schemas/order.schema';
-import { NumericDateQueryDto } from 'src/validators/numeric-date-query.dto';
+import { NumericDateQueryDto } from 'src/dtos/numeric-date-query.dto';
 
 @Injectable()
 export class OrdersRepository implements OrderRepositoryInterface {
