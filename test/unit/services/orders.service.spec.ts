@@ -10,6 +10,7 @@ import {
 import { OrdersService } from 'src/services/orders.service';
 import { OrdersRepository } from 'src/repositories/orders.repository';
 import { ConfigService } from '@nestjs/config';
+import { NotFoundException } from '@nestjs/common';
 
 describe('OrdersService', () => {
   let service: OrdersService;
@@ -59,6 +60,14 @@ describe('OrdersService', () => {
 
     const response = await service.findOrdersByUserId(mockId);
     expect(response).toStrictEqual(mockOrder);
+  });
+
+  it('should return correct value on findOrdersByUserId method', async () => {
+    jest.spyOn(repository, 'getOrdersByUserId').mockResolvedValueOnce([]);
+
+    await expect(service.findOrdersByUserId(mockId)).rejects.toThrow(
+      NotFoundException,
+    );
   });
 
   it('should return correct value on create orders method', async () => {

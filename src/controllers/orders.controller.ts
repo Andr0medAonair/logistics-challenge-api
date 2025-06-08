@@ -14,12 +14,27 @@ import {
   FileFieldsInterceptor,
 } from '@blazity/nest-file-fastify';
 import { DateQueryDto } from 'src/dtos/date-query.dto';
+import {
+  ApiBadRequestResponse,
+  ApiCreatedResponse,
+  ApiNotFoundResponse,
+  ApiOkResponse,
+  ApiOperation,
+} from '@nestjs/swagger';
+import { ErrorResponse } from 'src/commons/swagger/ErrorResponse';
+import { UserDataResponse } from 'src/commons/swagger/UserDataResponse';
 
 @Controller('orders')
 export class OrdersController {
   constructor(private readonly ordersService: OrdersService) {}
 
   @Post()
+  @ApiOperation({ summary: 'Salvar pedidos' })
+  @ApiCreatedResponse({
+    type: UserDataResponse,
+    description: 'Salvar pedidos',
+  })
+  @ApiBadRequestResponse({ type: ErrorResponse, description: 'Bad Request' })
   @UseInterceptors(
     FileFieldsInterceptor([
       { name: 'file1', maxCount: 1 },
@@ -41,11 +56,27 @@ export class OrdersController {
   }
 
   @Get()
+  @ApiOperation({
+    summary: 'Buscar pedidos para todos os usuários filtrados ou não por data',
+  })
+  @ApiOkResponse({
+    type: UserDataResponse,
+    description: 'Pedidos Encontrados',
+  })
   async findAll(@Query() queryDto?: DateQueryDto): Promise<UserData[]> {
     return await this.ordersService.findAllOrders(queryDto);
   }
 
   @Get(':id')
+  @ApiOperation({ summary: 'Buscar pedidos para determinado usuário' })
+  @ApiOkResponse({
+    type: UserDataResponse,
+    description: 'Pedidos Encontrados',
+  })
+  @ApiNotFoundResponse({
+    type: ErrorResponse,
+    description: 'Not Found',
+  })
   async findOne(@Param('id') id: number): Promise<UserData> {
     return await this.ordersService.findOrdersByUserId(+id);
   }

@@ -1,4 +1,4 @@
-import { Injectable, Logger } from '@nestjs/common';
+import { Injectable, Logger, NotFoundException } from '@nestjs/common';
 import { stringToJsonConverter } from 'src/helpers/string-to-json-converter.helper';
 import { outputPayloadBuilder } from 'src/helpers/output-payload-builder.helper';
 import { formatDate } from 'src/utils/format-date.utils';
@@ -17,7 +17,7 @@ export class OrdersService {
   async createOrders(rawPayload: string): Promise<UserDataInterface[]> {
     Logger.log(
       `${this.className} - ${this.createOrders.name}`,
-      `Creating a new order with data: ${rawPayload}`,
+      `Criando pedidos com o payload: ${rawPayload}`,
     );
     const parsed: CreateOrderDto[] = stringToJsonConverter(rawPayload);
     const payload = await this.ordersRepository.createOrders(parsed);
@@ -29,7 +29,7 @@ export class OrdersService {
   ): Promise<UserDataInterface[]> {
     Logger.log(
       `${this.className} - ${this.findAllOrders.name}`,
-      'Retrieving all orders',
+      `Buscando pedidos. Data de início: ${queryDto.startDate}, Data de fim: ${queryDto.endDate}`,
     );
 
     const numericQuery = transformDateStringToNumeric(queryDto);
@@ -42,10 +42,19 @@ export class OrdersService {
   async findOrdersByUserId(id: number): Promise<UserDataInterface> {
     Logger.log(
       `${this.className} - ${this.findOrdersByUserId.name}`,
-      `Retrieving orders for user with ID: ${id}`,
+      `Buscando pedido do usuário ${id}`,
     );
 
     const payload = await this.ordersRepository.getOrdersByUserId(id);
+
+    if (payload.length === 0) {
+      Logger.error(
+        `${this.className} - ${this.findOrdersByUserId.name}`,
+        `Pedidos do usuário ${id} não encontrados.`,
+      );
+      throw new NotFoundException(`Pedidos do usuário ${id} não encontrados.`);
+    }
+
     const [orders] = outputPayloadBuilder(payload, formatDate);
 
     return orders;

@@ -18,6 +18,8 @@ async function bootstrap() {
     new FastifyAdapter({ logger: true }),
   );
 
+  app.setGlobalPrefix(process.env.GLOBAL_PREFIX ?? 'api/v1');
+
   app.useGlobalPipes(
     new ValidationPipe({
       transform: true,
@@ -37,9 +39,13 @@ async function bootstrap() {
   await app.register(fastyfyMultipart);
 
   const documentFactory = () => SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api', app, documentFactory);
+  SwaggerModule.setup(
+    `${process.env.GLOBAL_PREFIX}/docs`,
+    app,
+    documentFactory,
+  );
 
-  await app.listen(process.env.PORT ?? 5000);
+  await app.listen(process.env.PORT ?? 3000);
 }
 
 void bootstrap();

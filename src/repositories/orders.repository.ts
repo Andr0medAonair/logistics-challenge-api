@@ -37,7 +37,7 @@ export class OrdersRepository implements OrderRepositoryInterface {
 
     Logger.log(
       `${this.className} - ${this.findAllOrders.name}`,
-      `Payload retrieved: ${JSON.stringify(payload)}`,
+      `Payload recebido: ${JSON.stringify(payload)}`,
     );
 
     return payload;
@@ -48,7 +48,7 @@ export class OrdersRepository implements OrderRepositoryInterface {
 
     Logger.log(
       `${this.className} - ${this.getOrdersByUserId.name}`,
-      `Orders retrieved: ${JSON.stringify(payload)}`,
+      `Pedidos encontrados: ${JSON.stringify(payload)}`,
     );
 
     return payload;
@@ -57,10 +57,7 @@ export class OrdersRepository implements OrderRepositoryInterface {
   async createOrders(
     order: CreateOrderDto[],
   ): Promise<UserDataEntryInterface[]> {
-    Logger.log(
-      `order = ${JSON.stringify(order)}`,
-      `${this.className} - ${this.createOrders.name}`,
-    );
+    Logger.log(`${this.className} - ${this.createOrders.name}`);
 
     const createdOrder = await this.orderModel.insertMany(order, {
       ordered: true,
@@ -68,7 +65,7 @@ export class OrdersRepository implements OrderRepositoryInterface {
 
     Logger.log(
       `order = ${JSON.stringify(order)}`,
-      `${this.className} - Order created successfully}`,
+      `${this.className} - Pedidos salvos com sucesso.`,
     );
 
     return createdOrder;
