@@ -1,4 +1,4 @@
-import { formatDate } from 'src/utils/formatDate.utils';
+import { formatDate } from 'src/utils/format-date.utils';
 
 describe('formatDate', () => {
   test.each([

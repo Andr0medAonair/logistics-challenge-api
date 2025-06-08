@@ -1,4 +1,11 @@
-import { Controller, Get, Post, Param, UseInterceptors } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Param,
+  UseInterceptors,
+  Query,
+} from '@nestjs/common';
 import { OrdersService } from '../services/orders.service';
 import { UserData } from '../entities/user-data.entity';
 import {
@@ -6,6 +13,7 @@ import {
   UploadedFiles,
   FileFieldsInterceptor,
 } from '@blazity/nest-file-fastify';
+import { DateQueryDto } from 'src/validators/date-query.dto';
 
 @Controller('orders')
 export class OrdersController {
@@ -33,8 +41,8 @@ export class OrdersController {
   }
 
   @Get()
-  async findAll(): Promise<UserData[]> {
-    return await this.ordersService.findAllOrders();
+  async findAll(@Query() queryDto?: DateQueryDto): Promise<UserData[]> {
+    return await this.ordersService.findAllOrders(queryDto);
   }
 
   @Get(':id')

@@ -1,9 +1,11 @@
 import { Injectable, Inject, Logger } from '@nestjs/common';
-import { Model } from 'mongoose';
+import { FilterQuery, Model } from 'mongoose';
 import { CreateOrderDto } from '../validators/create-order.dto';
 import { UserDataEntry } from '../entities/user-data-entry.entity';
 import { OrderRepositoryInterface } from 'src/interfaces/orders-repository.interface';
 import { UserDataEntryInterface } from 'src/interfaces/user-data-entry.interface';
+import { OrderDocument } from 'src/schemas/order.schema';
+import { NumericDateQueryDto } from 'src/validators/numeric-date-query.dto';
 
 @Injectable()
 export class OrdersRepository implements OrderRepositoryInterface {
@@ -11,11 +13,24 @@ export class OrdersRepository implements OrderRepositoryInterface {
 
   constructor(
     @Inject('ORDER_MODEL')
-    private orderModel: Model<UserDataEntryInterface>,
+    private orderModel: Model<OrderDocument>,
   ) {}
 
-  async findAllOrders(): Promise<UserDataEntryInterface[]> {
-    const payload: UserDataEntry[] = await this.orderModel.find();
+  async findAllOrders(
+    query: NumericDateQueryDto,
+  ): Promise<UserDataEntryInterface[]> {
+    const { startDate, endDate } = query;
+
+    const filter: FilterQuery<OrderDocument> = {};
+
+    if (startDate || endDate) {
+      filter.dataNumerica = {
+        ...(startDate && { $gte: startDate }),
+        ...(endDate && { $lte: endDate }),
+      };
+    }
+
+    const payload = this.orderModel.find(filter).sort({ date: -1 }).exec();
 
     Logger.log(
       `${this.className} - ${this.findAllOrders.name}`,

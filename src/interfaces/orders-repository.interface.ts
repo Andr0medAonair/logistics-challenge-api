@@ -1,8 +1,9 @@
 import { CreateOrderDto } from 'src/validators/create-order.dto';
 import { UserDataEntryInterface } from './user-data-entry.interface';
+import { NumericDateQueryDto } from 'src/validators/numeric-date-query.dto';
 
 export interface OrderRepositoryInterface {
-  findAllOrders(): Promise<UserDataEntryInterface[]>;
+  findAllOrders(query: NumericDateQueryDto): Promise<UserDataEntryInterface[]>;
   getOrdersByUserId(userId: number): Promise<UserDataEntryInterface[]>;
   createOrders(order: CreateOrderDto[]): Promise<UserDataEntryInterface[]>;
 }

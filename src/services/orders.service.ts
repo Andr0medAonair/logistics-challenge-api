@@ -1,10 +1,12 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { stringToJsonConverter } from 'src/helpers/stringToJsonConverter.helper';
 import { outputPayloadBuilder } from 'src/helpers/outputPayloadBuilder.helper';
-import { formatDate } from 'src/utils/formatDate.utils';
+import { formatDate } from 'src/utils/format-date.utils';
 import { OrdersRepository } from '../repositories/orders.repository';
 import { CreateOrderDto } from 'src/validators/create-order.dto';
 import { UserDataInterface } from 'src/interfaces/user-data.interface';
+import { DateQueryDto } from 'src/validators/date-query.dto';
+import { transformDateStringToNumeric } from 'src/utils/transform-date-string-to-numeric.utils';
 
 @Injectable()
 export class OrdersService {
@@ -22,13 +24,17 @@ export class OrdersService {
     return outputPayloadBuilder(payload, formatDate);
   }
 
-  async findAllOrders(): Promise<UserDataInterface[]> {
+  async findAllOrders(
+    queryDto: DateQueryDto = new DateQueryDto(),
+  ): Promise<UserDataInterface[]> {
     Logger.log(
       `${this.className} - ${this.findAllOrders.name}`,
       'Retrieving all orders',
     );
 
-    const payload = await this.ordersRepository.findAllOrders();
+    const numericQuery = transformDateStringToNumeric(queryDto);
+
+    const payload = await this.ordersRepository.findAllOrders(numericQuery);
 
     return outputPayloadBuilder(payload, formatDate);
   }
