@@ -20,6 +20,8 @@ async function bootstrap() {
 
   app.setGlobalPrefix(process.env.GLOBAL_PREFIX ?? 'api/v1');
 
+  await app.register(fastyfyMultipart);
+
   app.useGlobalPipes(
     new ValidationPipe({
       transform: true,
@@ -35,8 +37,6 @@ async function bootstrap() {
     .setVersion('1.0')
     .addTag('logística')
     .build();
-
-  await app.register(fastyfyMultipart);
 
   const documentFactory = () => SwaggerModule.createDocument(app, config);
   SwaggerModule.setup(
