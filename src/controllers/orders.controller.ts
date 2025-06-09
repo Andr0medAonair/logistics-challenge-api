@@ -20,6 +20,7 @@ import {
   ApiNotFoundResponse,
   ApiOkResponse,
   ApiOperation,
+  ApiQuery,
 } from '@nestjs/swagger';
 import { ErrorResponse } from 'src/commons/swagger/ErrorResponse';
 import { UserDataResponse } from 'src/commons/swagger/UserDataResponse';
@@ -62,6 +63,18 @@ export class OrdersController {
   @ApiOkResponse({
     type: UserDataResponse,
     description: 'Pedidos Encontrados',
+  })
+  @ApiQuery({
+    name: 'startDate',
+    type: String,
+    description: 'Data de início para filtrar pedidos (formato: YYYY-MM-DD)',
+    required: false,
+  })
+  @ApiQuery({
+    name: 'endDate',
+    type: String,
+    description: 'Data final para filtrar pedidos (formato: YYYY-MM-DD)',
+    required: false,
   })
   async findAll(@Query() queryDto?: DateQueryDto): Promise<UserData[]> {
     return await this.ordersService.findAllOrders(queryDto);
