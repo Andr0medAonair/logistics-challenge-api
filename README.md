@@ -2,7 +2,7 @@
 
 ## Descrição
 
-Este projeto está sendo desenvolvido a partir do desafio técnico Vertical Logística proposto pelo LuizaLabs suja proposta é integrar dois sistemas cujo sistema legado envia um arquivo desnormalizado e o sistema necessita realizar a normalização, tratamento de dados e envio do payload num arquivo JSON.
+Este projeto está sendo desenvolvido a partir do desafio técnico Vertical Logística cuja proposta é integrar dois sistemas onde um sistema legado envia um arquivo desnormalizado e o backend necessita realizar a normalização, tratamento de dados e envio do payload num arquivo JSON.
 
 ## Tabela de Conteudos
 
