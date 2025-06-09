@@ -10,7 +10,8 @@ Este projeto está sendo desenvolvido a partir do desafio técnico Vertical Log�
 - [Tabela de Conteudos](#tabela-de-conteúdos)
 - [Configuração do Ambiente](#configuração-do-ambiente)
 - [Como Executar](#como-executar)
-- [Requisições](#requisições)
+- [Swagger](#swagger)
+- [Endpoints da API](#endpoints-da-api)
 - [Tecnologias](#tecnologias)
 
 ### ⚙️ Configuração do Ambiente
@@ -53,6 +54,9 @@ docker compose up
 ```
 
 A API estará disponível em http://localhost:3000.
+
+### Swagger
+Para conferir a modelagem da API, basta acessar o link http://localhost:3000/api/v1/docs no seu navegador após a execução para visualizar as rotas e modelos.
 
 ### Endpoints da API
 #### POST /api/v1/orders
